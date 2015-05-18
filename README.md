@@ -1,3 +1,5 @@
+Copied from: https://github.com/sslover/restful-api-node-express-mongodb-heroku-boilerplate
+
 ## Create Your Own RESTful API with Node.js, MongoDb, Express.js, Heroku Boilerplate
 
 This is boilerplate code for setting up a simple node.js RESTful API app using: the express.js framework, a MongoDb database (with the help of Mongoose), and hosting it on Heroku. Please refer to the following documentation for each of these components:
@@ -5,7 +7,7 @@ This is boilerplate code for setting up a simple node.js RESTful API app using: 
 * Node.js: <http://nodejs.org/>
 * Express.js: <http://expressjs.com/>
 * Moongoose.js (for MongoDB interaction): <http://mongoosejs.com/>
-* Heroku: <https://devcenter.heroku.com/categories/support> 
+* Heroku: <https://devcenter.heroku.com/categories/support>
 
 ### Getting started with your local development server
 
@@ -149,7 +151,7 @@ The above are typically called API endpoints, and client applications interact w
 
 Routing is how your app handles these incoming HTTP requests: performing the appropriate action and responding back to the client.
 
-In node.js (using Express), this is done through executing a callback function. In human language: 
+In node.js (using Express), this is done through executing a callback function. In human language:
 
 	when this request is received, perform this action, and respond back (usually with JSON).
 
@@ -171,7 +173,7 @@ A nice part about the ExpressJS framework (and nodejs in general) is the NPM sys
 For example, open up package.json. You can see we are setting our dependent packages. When you run npm install, all of these dependencies will be installed in your node_modules folder.
 
 package.json
-	
+
 	"dependencies": {
 	  "body-parser": "^1.10.1",
 	  "express": "^4.10.7",
@@ -196,4 +198,3 @@ To add a new node package, do the following in terminal:
 	npm install --save nameOfPackage
 
 The --save flag will automatically include the package in package.json as a dependency.
-
