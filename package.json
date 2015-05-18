@@ -1,5 +1,5 @@
 {
-  "name": "api-node-express-mongodb-heroku-boilerplate",
+  "name": "web-1-unicen",
   "version": "0.0.1",
   "dependencies": {
     "body-parser": "^1.10.1",
