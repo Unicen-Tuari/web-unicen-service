@@ -256,3 +256,17 @@ exports.remove = function(req,res){
 	})
 
 }
+
+
+/**
+ * GET '/api/get/:id'
+ * Receives a GET request specifying the user to get
+ * @param  {String} req.param('id'). The userId
+ * @return {Object} JSON
+ */
+
+exports.getHTML = function(req,res){
+
+  	res.send("<h1>PARTIAL RENDER</h1><p>Este texto fue cargado con partiarl render usando AJAX!!!</p>");
+
+}

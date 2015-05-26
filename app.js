@@ -59,10 +59,12 @@ var routes = require('./routes/index.js');
 app.get('/', routes.index); // calls index function in /routes/index.js
 
 // API routes
+
 app.post('/api/create', routes.create); // API create route and callback (see /routes/index.js)
 app.get('/api/get/:id', routes.getOne); // API retrieve 1 route and callback (see /routes/index.js)
 app.get('/api/group/:group', routes.getByGroup); // API retrieve 1 route and callback (see /routes/index.js)
 app.get('/api/get', routes.getAll); // API retrieve all route and callback (see /routes/index.js)
+app.get('/api/html', routes.getHTML); // API retrieve 1 route and callback (see /routes/index.js)
 app.post('/api/update/:id', routes.update); // API update route and callback (see /routes/index.js)
 app.get('/api/delete/:id', routes.remove); // API delete route and callback (see /routes/index.js)
 
