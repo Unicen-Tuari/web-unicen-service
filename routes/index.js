@@ -267,6 +267,6 @@ exports.remove = function(req,res){
 
 exports.getHTML = function(req,res){
 
-  	res.send("<h1>PARTIAL RENDER</h1><p>Este texto fue cargado con partiarl render usando AJAX!!!</p><button type=\"button\" class=\"js-comportamiento\">Boton</button>");
+  	res.send("<h1>PARTIAL RENDER</h1><p>Este texto fue cargado con partiarl render usando AJAX!!!</p><button type=\"button\" class=\"btn btn-default js-comportamiento\">Boton</button>");
 
 }
