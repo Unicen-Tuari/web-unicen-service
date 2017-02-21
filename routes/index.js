@@ -30,8 +30,8 @@ exports.index = function(req, res) {
 }
 
 /**
- * POST '/api/create'
- * Receives a POST request of the new user and location, saves to db, responds back
+ * POST '/api/thing'
+ * Receives a POST request of the new thing and group, saves to db, responds back
  * @param  {Object} req. An object containing the different attributes of the Person
  * @return {Object} JSON
  */
@@ -43,6 +43,11 @@ exports.create = function(req,res){
 	// pull out the name and location
 	var name = req.body.group;
 	var thing = req.body.thing;
+
+	if (name == null || thing == null){
+		var jsonData = {status:'ERROR', message: 'You must send information to save.'};
+		return res.status(400).json(jsonData)
+	}
 
 	var information = Information({
 		group: name,
@@ -74,12 +79,11 @@ exports.create = function(req,res){
 }
 
 /**
- * GET '/api/get/:id'
- * Receives a GET request specifying the user to get
+ * GET '/api/thing/:id'
+ * Receives a GET request specifying the thing to get
  * @param  {String} req.param('id'). The userId
  * @return {Object} JSON
  */
-
 exports.getOne = function(req,res){
 
 	var requestedId = req.param('id');
@@ -104,6 +108,12 @@ exports.getOne = function(req,res){
 	})
 }
 
+/**
+ * GET '/api/thing/group/:id'
+ * Receives a GET request specifying the group to get all the thing for that group.
+ * @param  {String} req.param('id'). The userId
+ * @return {Object} JSON
+ */
 exports.getByGroup = function(req,res){
 
 	var requestedGroup = req.param('group');
@@ -131,8 +141,8 @@ exports.getByGroup = function(req,res){
 }
 
 /**
- * GET '/api/get'
- * Receives a GET request to get all user details
+ * GET '/api/thing'
+ * Receives a GET request to get all the things.
  * @return {Object} JSON
  */
 
@@ -160,8 +170,8 @@ exports.getAll = function(req,res){
 }
 
 /**
- * POST '/api/update/:id'
- * Receives a POST request with data of the user to update, updates db, responds back
+ * PUT '/api/:id'
+ * Receives a PUT request with data of the thing to update, updates db, responds back
  * @param  {String} req.param('id'). The userId to update
  * @param  {Object} req. An object containing the different attributes of the Person
  * @return {Object} JSON
@@ -228,8 +238,8 @@ exports.update = function(req,res){
 }
 
 /**
- * GET '/api/delete/:id'
- * Receives a GET request specifying the user to delete
+ * Delete '/api/thing/:id'
+ * Receives a DELETE request specifying the thing to delete
  * @param  {String} req.param('id'). The userId
  * @return {Object} JSON
  */
@@ -259,10 +269,9 @@ exports.remove = function(req,res){
 
 
 /**
- * GET '/api/get/:id'
- * Receives a GET request specifying the user to get
- * @param  {String} req.param('id'). The userId
- * @return {Object} JSON
+ * GET '/api/html'
+ * Receives a GET request to retrive a piece of HTML
+ * @return {Object} HTML
  */
 
 exports.getHTML = function(req,res){
