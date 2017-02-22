@@ -181,60 +181,34 @@ exports.update = function(req,res){
 
 	var requestedId = req.param('id');
 
-	// pull out the name and location
-	var name = req.body.name;
-	var location = req.body.location;
+	// pull out the group and thing
+	var group = req.body.group;
+	var thing = req.body.thing;
 
-	//now, geocode that location
-	geocoder.geocode(location, function ( err, data ) {
-
-		console.log(data);
-
-  	// if we get an error, or don't have any results, respond back with error
-  	if (err || data.status == 'ZERO_RESULTS'){
-  		var jsonData = {status:'ERROR', message: 'Error finding location'};
-  		res.json(jsonData);
+	var dataToUpdate = {
+		group: group,
+		thing: thing
+	};
+console.log(dataToUpdate);
+	Information.findByIdAndUpdate(requestedId, dataToUpdate, function(err,data){
+  	// if err saving, respond back with error
+  	console.log(err);
+  	if (err){
+  		var jsonData = {status:'ERROR', message: 'Error updating thing'};
+  		return res.json(jsonData);
   	}
 
-  	// otherwise, update the user
+  	console.log('updated the thing!');
+  	console.log(data);
 
-	  var locationName = data.results[0].formatted_address; // the location name
-	  var lon = data.results[0].geometry.location.lng;
-		var lat = data.results[0].geometry.location.lat;
+  	// now return the json data of the new person
+  	var jsonData = {
+  		status: 'OK',
+  		person: data
+  	}
 
-  	// need to put the geo co-ordinates in a lng-lat array for saving
-  	var lnglat_array = [lon,lat];
-
-	  var dataToUpdate = {
-	  	name: name,
-	  	locationName: locationName,
-	  	locationGeo: lnglat_array
-	  };
-
-	  // now, update that person
-		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
-	  Person.findByIdAndUpdate(requestedId, dataToUpdate, function(err,data){
-	  	// if err saving, respond back with error
-	  	if (err){
-	  		var jsonData = {status:'ERROR', message: 'Error updating person'};
-	  		return res.json(jsonData);
-	  	}
-
-	  	console.log('updated the person!');
-	  	console.log(data);
-
-	  	// now return the json data of the new person
-	  	var jsonData = {
-	  		status: 'OK',
-	  		person: data
-	  	}
-
-	  	return res.json(jsonData);
-
-	  })
-
-	});
-
+  	return res.json(jsonData);
+  });
 }
 
 /**
