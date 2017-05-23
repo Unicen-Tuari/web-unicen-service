@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Unicen Web Service",
+		"_postman_id": "3329ebbb-1b1f-ebef-860b-c9ba0eda7dcc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+			"request": {
+				"url": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"group\": \"160\", \n\"thing\": \"{'nombre':'Web Unicen 2!!!'}\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://web-unicen.herokuapp.com/api/thing/",
+			"request": {
+				"url": "http://web-unicen.herokuapp.com/api/thing/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"group\": \"160\", \n\"thing\": \"{'nombre':'Web Unicen!!!'}\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+			"request": {
+				"url": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"group\": \"160\", \n\"thing\": \"{'nombre':'Web Unicen 2!!!'}\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+			"request": {
+				"url": "http://web-unicen.herokuapp.com/api/thing/59245d623b08720400562505",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
