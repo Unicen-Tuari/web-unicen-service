@@ -17,8 +17,6 @@ var Information = require("../models/model.js");
 
 exports.index = function(req, res) {
 
-	console.log("main route requested");
-
 	var data = {
 		status: 'OK',
 		message: 'Welcome to the Web 1 - UNICEN v1 API'
@@ -37,8 +35,6 @@ exports.index = function(req, res) {
  */
 
 exports.create = function(req,res){
-
-	console.log(req.body);
 
 	// pull out the name and location
 	var name = req.body.group;
@@ -62,9 +58,6 @@ exports.create = function(req,res){
 			var jsonData = {status:'ERROR', message: 'Error saving information'};
 			return res.json(jsonData);
 		}
-
-		console.log('saved a new information!');
-		console.log(data);
 
 		// now return the json data of the new person
 		var jsonData = {
@@ -189,17 +182,12 @@ exports.update = function(req,res){
 		group: group,
 		thing: thing
 	};
-console.log(dataToUpdate);
+
 	Information.findByIdAndUpdate(requestedId, dataToUpdate, function(err,data){
-  	// if err saving, respond back with error
-  	console.log(err);
   	if (err){
   		var jsonData = {status:'ERROR', message: 'Error updating thing'};
   		return res.json(jsonData);
   	}
-
-  	console.log('updated the thing!');
-  	console.log(data);
 
   	// now return the json data of the new person
   	var jsonData = {
@@ -249,7 +237,5 @@ exports.remove = function(req,res){
  */
 
 exports.getHTML = function(req,res){
-
   	res.send("<h1>PARTIAL RENDER</h1><p>Este texto fue cargado con partiarl render usando AJAX!!!</p><button type=\"button\" class=\"btn btn-default js-comportamiento\">Boton</button>");
-
 }
