@@ -84,7 +84,7 @@ exports.create = function(req,res){
  */
 
 exports.createInGroup = function(req,res){
-	var name = req.param('group');
+	var name = req.params.group;
 	// pull out the location
 	var thing = req.body.thing;
 	console.log("Name ",name);
@@ -110,11 +110,11 @@ exports.createInGroup = function(req,res){
 /**
  * GET '/api/thing/:id'
  * Receives a GET request specifying the thing to get
- * @param  {String} req.param('id'). The userId
+ * @param  {String} req.params.id. The userId
  * @return {Object} JSON
  */
 exports.getOne = function(req,res){
-	var requestedId = req.param('id');
+	var requestedId = req.params.id;
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
 	Information.findById(requestedId, function(err,data){
 		// if err or no user found, respond with error
@@ -134,12 +134,12 @@ exports.getOne = function(req,res){
 /**
  * GET '/api/thing/group/:id'
  * Receives a GET request specifying the group to get all the thing for that group.
- * @param  {String} req.param('id'). The userId
+ * @param  {String} req.params.id. The userId
  * @return {Object} JSON
  */
 exports.getByGroup = function(req,res){
 
-	var requestedGroup = req.param('group');
+	var requestedGroup = req.params.group;
 
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
 	Information.find({ group: requestedGroup }, function(err,data){
@@ -193,14 +193,14 @@ exports.getAll = function(req,res){
 /**
  * PUT '/api/:id'
  * Receives a PUT request with data of the thing to update, updates db, responds back
- * @param  {String} req.param('id'). The userId to update
+ * @param  {String} req.params.id. The userId to update
  * @param  {Object} req. An object containing the different attributes of the Person
  * @return {Object} JSON
  */
 
 exports.update = function(req,res){
 
-	var requestedId = req.param('id');
+	var requestedId = req.params.id;
 
 	// pull out the group and thing
 	var group = req.body.group;
@@ -230,13 +230,13 @@ exports.update = function(req,res){
 /**
  * Delete '/api/thing/:id'
  * Receives a DELETE request specifying the thing to delete
- * @param  {String} req.param('id'). The userId
+ * @param  {String} req.params.id. The userId
  * @return {Object} JSON
  */
 
 exports.remove = function(req,res){
 
-	var requestedId = req.param('id');
+	var requestedId = req.params.id;
 
 	// Mongoose method, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
 	Information.findByIdAndRemove(requestedId,function(err, data){
