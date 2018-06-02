@@ -65,13 +65,22 @@ app.get('/', routes.index); // calls index function in /routes/index.js
 
 // API routes
 
-app.post('/api/thing', routes.create); // API create route and callback (see /routes/index.js)
-app.get('/api/thing/:id', routes.getOne); // API retrieve 1 route and callback (see /routes/index.js)
-app.get('/api/thing/group/:group', routes.getByGroup); // API retrieve 1 route and callback (see /routes/index.js)
-app.get('/api/thing', routes.getAll); // API retrieve all route and callback (see /routes/index.js)
 app.get('/api/html', routes.getHTML); // API retrieve 1 route and callback (see /routes/index.js)
+
+app.get('/api/thing', routes.getAll); // API retrieve all route and callback (see /routes/index.js)
+
+app.post('/api/thing', routes.create); // API create route and callback (see /routes/index.js)
+app.get('/api/thing/group/:group', routes.getByGroup); // API retrieve 1 route and callback (see /routes/index.js)
+app.get('/api/thing/:id', routes.getOne); // API retrieve 1 route and callback (see /routes/index.js)
 app.put('/api/thing/:id', routes.update); // API update route and callback (see /routes/index.js)
 app.delete('/api/thing/:id', routes.remove); // API delete route and callback (see /routes/index.js)
+
+app.post('/api/groups/:group/:thingtype', routes.createInGroup); // API create route and callback (see /routes/index.js)
+app.get('/api/groups/:group/:thingtype', routes.getByGroup); // API retrieve 1 route and callback (see /routes/index.js)
+app.get    ('/api/groups/:group/:thingtype/:id', routes.getOne) // API retrieve 1 route and callback (see /routes/index.js)
+    .put   ('/api/groups/:group/:thingtype/:id', routes.update) // API update route and callback (see /routes/index.js)
+    .delete('/api/groups/:group/:thingtype/:id', routes.remove); // API delete route and callback (see /routes/index.js)
+
 
 // if route not found, respond with 404
 app.use(function(req, res, next){

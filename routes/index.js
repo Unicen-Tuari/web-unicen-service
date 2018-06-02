@@ -27,6 +27,23 @@ exports.index = function(req, res) {
 
 }
 
+function processSave(res, err,data){
+	// if err saving, respond back with error
+	if (err){
+		var jsonData = {status:'ERROR', message: 'Error saving information'};
+		return res.json(jsonData);
+	}
+
+	// now return the json data of the new person
+	var jsonData = {
+		status: 'OK',
+		information: data
+	}
+
+	return res.json(jsonData);
+
+}
+
 /**
  * POST '/api/thing'
  * Receives a POST request of the new thing and group, saves to db, responds back
@@ -40,7 +57,7 @@ exports.create = function(req,res){
 	var name = req.body.group;
 	var thing = req.body.thing;
 
-	if (name == null || thing == null){
+	if (!name || !thing){
 		var jsonData = {status:'ERROR', message: 'You must send information to save.'};
 		return res.status(400).json(jsonData)
 	}
@@ -52,21 +69,40 @@ exports.create = function(req,res){
 
 	// now, save that person to the database
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
-	information.save(function(err,data){
-		// if err saving, respond back with error
-		if (err){
-			var jsonData = {status:'ERROR', message: 'Error saving information'};
-			return res.json(jsonData);
-		}
+	information.save(function(err,data) {
+		processSave(res, err, data)
+	});
 
-		// now return the json data of the new person
-		var jsonData = {
-			status: 'OK',
-			information: data
-		}
+}
 
-		return res.json(jsonData);
 
+/**
+ * POST '/api/thing'
+ * Receives a POST request of the new thing and group, saves to db, responds back
+ * @param  {Object} req. An object containing the different attributes of the Person
+ * @return {Object} JSON
+ */
+
+exports.createInGroup = function(req,res){
+	var name = req.param('group');
+	// pull out the location
+	var thing = req.body.thing;
+	console.log("Name ",name);
+	console.log("Thing ", thing);
+	if (!name || !thing){
+		var jsonData = {status:'ERROR', message: 'You must send information to save.'};
+		return res.status(400).json(jsonData)
+	}
+
+	var information = Information({
+		group: name,
+		thing: thing
+	});
+
+	// now, save that person to the database
+	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
+	information.save(function(err,data) {
+		processSave(res, err, data)
 	});
 
 }
@@ -78,26 +114,20 @@ exports.create = function(req,res){
  * @return {Object} JSON
  */
 exports.getOne = function(req,res){
-
 	var requestedId = req.param('id');
-
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
 	Information.findById(requestedId, function(err,data){
-
 		// if err or no user found, respond with error
 		if(err || data == null){
   		var jsonData = {status:'ERROR', message: 'Could not find that information'};
-  		 return res.json(jsonData);
+  		return res.json(jsonData);
   	}
-
   	// otherwise respond with JSON data of the user
   	var jsonData = {
   		status: 'OK',
   		information: data
   	}
-
   	return res.json(jsonData);
-
 	})
 }
 
@@ -119,13 +149,11 @@ exports.getByGroup = function(req,res){
   		var jsonData = {status:'ERROR', message: 'Could not find that group'};
   		 return res.json(jsonData);
   	}
-
   	// otherwise respond with JSON data of the user
   	var jsonData = {
   		status: 'OK',
   		information: data
   	}
-
   	return res.json(jsonData);
 
 	})
