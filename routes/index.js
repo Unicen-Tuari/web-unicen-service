@@ -203,11 +203,11 @@ exports.update = function(req,res){
 	var requestedId = req.params.id;
 
 	// pull out the group and thing
-	var group = req.body.group;
+	//var group = req.body.group;
 	var thing = req.body.thing;
 
 	var dataToUpdate = {
-		group: group,
+		//group: group,
 		thing: thing
 	};
 
