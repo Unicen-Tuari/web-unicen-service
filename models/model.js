@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var infoSchema = new Schema({
 	group: String,
+	thingtype: String,
 	thing:   Schema.Types.Mixed,
 	dateAdded : { type: Date, default: Date.now },
 })

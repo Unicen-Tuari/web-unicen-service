@@ -64,6 +64,7 @@ exports.create = function(req,res){
 
 	var information = Information({
 		group: name,
+		thingtype: "default",
 		thing: thing
 	});
 
@@ -83,8 +84,9 @@ exports.create = function(req,res){
  * @return {Object} JSON
  */
 
-exports.createInGroup = function(req,res){
+exports.createInGroupAndThingtype = function(req,res){
 	var name = req.params.group;
+	var thingtype = req.params.thingtype;
 	// pull out the location
 	var thing = req.body.thing;
 	console.log("Name ",name);
@@ -96,6 +98,7 @@ exports.createInGroup = function(req,res){
 
 	var information = Information({
 		group: name,
+		thingtype: thingtype,
 		thing: thing
 	});
 
@@ -154,6 +157,41 @@ exports.getByGroup = function(req,res){
   		status: 'OK',
   		information: data
   	}
+  	return res.json(jsonData);
+
+	})
+
+
+}
+/**
+ * GET '/api/thing/group/:id'
+ * Receives a GET request specifying the group to get all the thing for that group.
+ * @param  {String} req.params.id. The userId
+ * @return {Object} JSON
+ */
+exports.getByGroupAndThingtype = function(req,res){
+
+	var requestedGroup = req.params.group;
+	var requestedThingtype = req.params.thingtype;
+
+	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findById
+	Information.find({ group: requestedGroup, thingtype: requestedThingtype }, function(err,data){
+
+		// if err or no user found, respond with error
+		if(err || data == null){
+  		var jsonData = {status:'ERROR', message: 'Could not find that group'};
+  		 return res.json(jsonData);
+  	}
+  	// otherwise respond with JSON data of the user
+  	var jsonData = {
+  		status: 'OK'
+		}
+		for (var i = 0; i < data.length; i++) {
+			delete data[i]["group"];
+			delete data[i]["thingtype"];
+		}
+		jsonData[requestedThingtype] = data;
+
   	return res.json(jsonData);
 
 	})

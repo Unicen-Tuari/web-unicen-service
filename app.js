@@ -76,8 +76,8 @@ app.get('/api/thing/:id', routes.getOne); // API retrieve 1 route and callback (
 app.put('/api/thing/:id', routes.update); // API update route and callback (see /routes/index.js)
 app.delete('/api/thing/:id', routes.remove); // API delete route and callback (see /routes/index.js)
 
-app.post('/api/groups/:group/:thingtype', routes.createInGroup); // API create route and callback (see /routes/index.js)
-app.get('/api/groups/:group/:thingtype', routes.getByGroup); // API retrieve 1 route and callback (see /routes/index.js)
+app.post('/api/groups/:group/:thingtype', routes.createInGroupAndThingtype); // API create route and callback (see /routes/index.js)
+app.get('/api/groups/:group/:thingtype', routes.getByGroupAndThingtype); // API retrieve 1 route and callback (see /routes/index.js)
 app.get    ('/api/groups/:group/:thingtype/:id', routes.getOne) // API retrieve 1 route and callback (see /routes/index.js)
     .put   ('/api/groups/:group/:thingtype/:id', routes.update) // API update route and callback (see /routes/index.js)
     .delete('/api/groups/:group/:thingtype/:id', routes.remove); // API delete route and callback (see /routes/index.js)
