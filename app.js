@@ -29,7 +29,7 @@ var mongo_uri =
     process.env.MONGOHQ_URL ||
     // default to docker-compose DNS
     'mongodb://database:27017/web-unicen-service'; 
-app.db = mongoose.connect(mongo_uri);
+app.db = mongoose.connect(mongo_uri,{ useNewUrlParser: true });
 console.log("connected to database");
 
 /**
