@@ -10,7 +10,7 @@ services:
   links:
     - "database"
   working_dir: /app
-  command: npm nodemon app.js
+  command: npm start
  database: 
   image: mongo
   ports:
