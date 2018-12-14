@@ -1,6 +1,7 @@
 {
   "name": "web-1-unicen",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "private": true,
   "dependencies": {
     "body-parser": "^1.10.1",
     "express": "^4.10.7",
