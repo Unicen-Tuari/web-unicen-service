@@ -1,0 +1,17 @@
+version: '3.0' 
+
+services:
+ node:
+  image: node:10
+  volumes:
+    - ".:/app"
+  ports:
+    - "5000:5000"
+  links:
+    - "database"
+  working_dir: /app
+  command: npm nodemon app.js
+ database: 
+  image: mongo
+  ports:
+  - "27017:27017"
