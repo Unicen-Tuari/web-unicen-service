@@ -7,7 +7,7 @@
     "express": "^4.10.7",
     "geocoder": "^0.2.2",
     "method-override": "^3.0.0",
-    "moment": "^2.9.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.10.11",
     "request": "^2.51.0"
   },
